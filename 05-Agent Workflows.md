@@ -186,19 +186,15 @@ Single Agent → Sequential Workflow → Group Chat → Human-in-loop
    - **Preview** 버튼을 클릭합니다.
    - 여행 계획을 세워줄 것을 요청합니다.
 
-    ```
-    제주도 2박 3일 여행 계획을 세워줘
-    ```
+**테스트 질문**
+
+   ```
+   제주도 2박 3일 여행 계획을 세워줘
+   ```
    <img width="2000" height="1125" alt="image" src="https://github.com/user-attachments/assets/6eb27906-7536-40d1-a14b-00b0c1e9fb28" />
-    
 
-2. **테스트 질문**
 
-   ```
-   사용자: 제주도 2박 3일 여행 계획 세우는 것을 도와줘.
-   ```
-
-3. **실행 과정 관찰**
+**실행 과정 관찰**
 
    각 단계에서의 출력을 확인합니다:
 
@@ -206,31 +202,43 @@ Single Agent → Sequential Workflow → Group Chat → Human-in-loop
    - **Step 2 (LocalAgent)**: 현지 정보 추가 (날씨, 교통, 이벤트)
    - **Step 3 (TravelSummaryAgent)**: 최종 요약 및 체크리스트
 
-   ![Workflow Preview](../assets/05-05-workflow-preview.png)
+   <img width="2000" height="1125" alt="image" src="https://github.com/user-attachments/assets/e8f3a92c-847a-4bd0-83ae-d325e3507d90" />
+   <img width="2000" height="1125" alt="image" src="https://github.com/user-attachments/assets/cc208cb0-94df-4806-9e91-ff22c3285f70" />
+   
 
-4. **Traces 확인**
+**Traces 확인**
+
+   <img width="2000" height="1125" alt="image" src="https://github.com/user-attachments/assets/e8036a3c-6406-4159-8aa5-77d31f524607" />
 
    - 각 에이전트의 실행 시간
    - 에이전트 간 데이터 전달
    - 최종 출력 생성 과정
 
+   <img width="2000" height="1125" alt="image" src="https://github.com/user-attachments/assets/dcf47012-3dd6-4e8a-bd9d-e74dfda4e8d9" />
+
+   <img width="2000" height="1125" alt="image" src="https://github.com/user-attachments/assets/638526e4-32f3-4fac-a3bd-e6c30a476ab6" />
+
+   <img width="2000" height="1125" alt="image" src="https://github.com/user-attachments/assets/8e4e6d56-b40f-4208-a11e-54669909f272" />
+
+   <img width="2000" height="1125" alt="image" src="https://github.com/user-attachments/assets/7470f051-ef1e-4a14-bff5-a9e74c001d2c" />
+   
+
 ## 워크플로우 배포 및 호출
 
-1. **Publish**
+**Publish**
 
-   - **Publish** 버튼을 클릭합니다.
+   - **개시** 버튼을 클릭합니다.
 
-   ![Workflow Publish-1](../assets/05-05-workflow-publish1.png)
+   <img width="2000" height="1125" alt="image" src="https://github.com/user-attachments/assets/93f7d7a4-0df3-41e0-98e0-c7f0cdd327d4" />
 
-   - 버전을 확인하고 게시합니다.
+   - 워크플로우의 이름과 버전을 확인하고 게시합니다.
 
-   ![Workflow Publish-2](../assets/05-05-workflow-publish2.png)
+   <img width="2000" height="1125" alt="image" src="https://github.com/user-attachments/assets/8a29c46c-fe6e-48bd-8d54-cb69b9ebe16f" />
 
-   ![Workflow Publish-3](../assets/05-05-workflow-publish3.png)
 
-2. **Python SDK로 호출**
+**Python SDK로 호출**
 
-   > 💡 **실습 팁**: 아래 코드는 참고용입니다. 실제 실습 시에는 이 저장소의 루트 경로에 있는 `invokeWorkflow.py` 파일을 열어 `PROJECT_ENDPOINT`와 `WORKFLOW_NAME` 값을 본인 환경에 맞게 수정한 후 실행하세요.
+   > 💡 **실습 팁**: 아래 코드는 참고용입니다. 실제 실습 시에는 이 저장소의 루트 경로에 있는 `invokeWorkflow.py` 파일을 열어 `PROJECT_ENDPOINT`, `WORKFLOW_NAME`, `WORKFLOW_VERSION` 값을 본인 환경에 맞게 수정한 후 실행하세요.
 
    `invokeWorkflow.py` 파일 예시:
 
@@ -295,7 +303,7 @@ Single Agent → Sequential Workflow → Group Chat → Human-in-loop
        print("Conversation deleted")
    ```
 
-3. **실행**
+**실행**
 
    ```bash
    pip install --pre azure-ai-projects>=2.0.0b1
@@ -307,6 +315,13 @@ Single Agent → Sequential Workflow → Group Chat → Human-in-loop
 - 모든 에이전트가 순서대로 실행되는지 확인
 - 각 에이전트의 출력이 다음 에이전트에 전달되는지 확인
 - 최종 출력이 올바르게 생성되는지 확인
+
+<img width="1772" height="1125" alt="image" src="https://github.com/user-attachments/assets/525f0d62-41a0-4969-87eb-73e621e58954" />
+
+<img width="1772" height="1125" alt="image" src="https://github.com/user-attachments/assets/1c17a884-6313-4c8a-bc51-7ccab1de86f7" />
+
+<img width="1772" height="1125" alt="image" src="https://github.com/user-attachments/assets/31e551d4-f8a4-46f8-9940-7f5379f14118" />
+
 
 ---
 
