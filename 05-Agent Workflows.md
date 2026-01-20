@@ -33,7 +33,7 @@ Single Agent → Sequential Workflow → Group Chat → Human-in-loop
 
 ---
 
-# Sequential Workflow
+# 1. Sequential Workflow
   - 에이전트 및 노드가 정해진 순서대로 직렬 실행합니다.
   - 이전 단계의 출력이 다음 단계의 입력으로 전달됩니다.
   - 파이프라인, 단계별 처리에 적합합니다.
@@ -312,7 +312,7 @@ Instructions:
 
 ---
 
-# Group Chat Workflow
+# 2. Group Chat Workflow
   - 여러 에이전트가 대화를 통해 협업하여 문제를 해결하는 워크플로우입니다.
   - 여러 에이전트가 컨텍스트/풀에 따라 제어권을 주고 받음
   - Fixed pipeline 이 아니라 동적 라우팅
@@ -465,7 +465,7 @@ Instructions:
 
 ---
 
-# Human-in-loop Workflow
+# 3. Human-in-loop Workflow
   - 사람의 승인이나 입력이 필요한 지점에서 워크플로우를 일시 중지하는 패턴입니다.
   - Workflow 실행 중 사용자 입력을 기다렸다가 재개
   - 승인, 확인, 추가 정보 수집 용도
