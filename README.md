@@ -4,12 +4,11 @@
 
 ## 📋 목차
 
+###    [Agent Workflow](https://github.com/soondukkim/MicrosoftFoundry-AgentWorkflow/blob/main/Agent%20Workflows.md)
 - 워크플로우 개요
 - Sequential Workflow
 - Group Chat Workflow
 - Human-in-loop Workflow
-###    [Agent Workflow](https://github.com/soondukkim/MicrosoftFoundry-AgentWorkflow/blob/main/Agent%20Workflows.md)
-  
 
 
 ## 🎯 학습 목표
