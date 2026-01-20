@@ -14,10 +14,8 @@ Single Agent → Sequential Workflow → Group Chat → Human-in-loop
 | 타입 | 설명 | 사용 사례 |
 |------|------|-----------|
 | **Sequential** | 순차적 실행 | 데이터 파이프라인, 문서 처리 |
-| **Parallel** | 병렬 실행 | 동시 분석, 다중 검색 |
 | **Group Chat** | 에이전트 간 대화 | 협업 문제 해결, 의사결정 |
 | **Human-in-loop** | 사람 개입 | 승인 프로세스, 검증 |
-| **Conditional** | 조건부 분기 | 동적 라우팅, 에러 처리 |
 
 ## 워크플로우 구성 요소
 
