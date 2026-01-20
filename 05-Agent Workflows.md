@@ -33,6 +33,12 @@ Single Agent → Sequential Workflow → Group Chat → Human-in-loop
 
 ---
 
+# 0. New Foundry UI 전환
+   - Microsoft Foundry Portal (https://ai.azure.com) 에서 우측 상단에 새 Foundry 토글을 활성화 하고, 이전 실습에서 만들어 놓은 프로젝트를 선택합니다.
+    <img width="1992" height="1125" alt="image" src="https://github.com/user-attachments/assets/3c1b81d4-dc31-4f74-9daa-02c3edbc7721" />
+   - 우측 상단에 빌드 메뉴를 클릭하면 왼편에 Foundry Build 메뉴들을 확인할 수 있습니다.
+     이제 에이전트 및 워크플로우를 생성할 준비가 되었습니다.
+
 # 1. Sequential Workflow
   - 에이전트 및 노드가 정해진 순서대로 직렬 실행합니다.
   - 이전 단계의 출력이 다음 단계의 입력으로 전달됩니다.
