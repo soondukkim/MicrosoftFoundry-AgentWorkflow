@@ -482,27 +482,16 @@ Instructions:
 
 ## Human-in-Loop Workflow 생성
 
-1. **Workflows 섹션 이동**
+- **새 워크플로우 생성**
+   - 워크플로우 -> 만들기
+   - **Human-in-Loop Workflow** 템플릿을 선택합니다.
+   <img width="1688" height="1125" alt="image" src="https://github.com/user-attachments/assets/59e378a5-c245-4f56-906f-add0c135dfa1" />
 
-   - Foundry 포털 우측 상단 메뉴에서 **Build**를 선택합니다.
-   - **Workflows** 메뉴를 클릭합니다.
-   
-   ![Build > Workflows 메뉴](../assets/05-01-workflows-menu.png)
-
-2. **새 워크플로우 생성**
-
-   - **+ Create workflow** 또는 **New workflow** 버튼을 클릭합니다.
-   - **Human-in-Loop Workflow**를 선택합니다.
-   
-   ![Create workflow 버튼](../assets/05-02-create-workflow.png)
-
-   ![Create workflow 버튼2](../assets/05-02-create-workflow-2.png)
-
-3. **에이전트 추가**
-
+- **에이전트 추가**
    변수 설정 뒤에 + 아이콘을 클릭하여 에이전트 호출을 추가하고, TravelPlannerAgent 를 선택하고 작업 ID 를 'TrevelPlanner' 로 변경합니다:
    <img width="1688" height="1125" alt="image" src="https://github.com/user-attachments/assets/5d8ac955-5446-4122-b882-f0fce9b2efd9" />
 
+- **사람 개입 조건 변경**
    질문하기 노드에서 Ask a question 을 변경 후 완료 버튼을 클릭합니다.
    ```
    여행 계획에 만족하시나요? 만족하신다면 YES 를 입력해 주세요.
@@ -516,49 +505,52 @@ Instructions:
    <img width="1688" height="1125" alt="image" src="https://github.com/user-attachments/assets/7ca9a26f-dc18-4bd0-b1fa-d6b504da0f66" />
 
    다음으로 이동 노드의 Select action 에서 '에이전트 호출 : TravelPlanner' 선택 후 완료 버튼을 클릭합니다.
+
+- **종료 메시지 변경**
    If 뒤의 메시지보내기 노드를 삭제합니다.
    Else 뒤의 메시지보내기 노드의 메시지를 수정합니다.
    ```
    Travel Agency 를 이용해 주셔서 감사합니다.
    ```
    
-5. **워크플로우 저장**
+- **워크플로우 저장**
+   저장 버튼을 클릭하고 'Human-in-Loop' 로 저장합니다.
 
-   - **Save** 버튼을 클릭합니다.
-
-   ![Workflow 이름 등록](../assets/05-02-workflow-save.png)
-
-   ![Workflow 이름 저장](../assets/05-02-workflow-saved.png)
 
 ## 워크플로우 테스트
 
-1. **Preview 모드**
+- **Preview 모드**
 
    - **Preview** 버튼을 클릭합니다.
 
-2. **테스트 질문**
+- **사용자 질문**
 
    ```
-   사용자: 제주도 2박 3일 여행 계획 세우는 것을 도와줘.
+   시카고 2박 3일 여행 계획 세워줘.
    ```
+   - TravelPlannerAgent 의 답변을 확인합니다.
+   - 여행 시기에 맞는 추가 정보를 요청합니다.
+   ```
+   1월 날씨를 감안해서 준비할 것도 알려줘
+   ```
+   - 시카고의 1월 날씨에 맞는 여행 계획을 확인합니다.
+   <img width="1688" height="1125" alt="image" src="https://github.com/user-attachments/assets/240919a6-c121-4a45-854d-e52c049c567e" />
 
-3. **실행 과정 관찰**
+   - 대화를 종료합니다.
+   ```
+   YES
+   ```
+   <img width="1688" height="1125" alt="image" src="https://github.com/user-attachments/assets/f7e41dd4-78a7-46a5-95cc-c6e96db6ee9d" />
+
+
+- **실행 과정 관찰**
 
    각 단계에서의 출력을 확인합니다:
 
-   - **Step 1 (TravelPlannerAgent)**: 기본 여행 일정 생성
-   - **Step 2 (LocalAgent)**: 현지 정보 추가 (날씨, 교통, 이벤트)
-   - **Step 3 (TravelSummaryAgent)**: 최종 요약 및 체크리스트
+   - **Step 1 :** 기본 여행 계획 생성
+   - **Step 2 :** 추가 문의에 대한 답변 내용
+   - **Step 3 :** 사용자의 종료의사에 따른 대화 종료
 
-   ![Workflow Preview](../assets/05-05-workflow-preview.png)
-
-4. **Traces 확인**
-
-   - 각 에이전트의 실행 시간
-   - 에이전트 간 데이터 전달
-   - 최종 출력 생성 과정
-
-/// 여기까지 HILW 시나리오 수정
 
 ## 💡 Human-in-loop 모범 사례
 
