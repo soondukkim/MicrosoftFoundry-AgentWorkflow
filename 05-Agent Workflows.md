@@ -476,11 +476,11 @@ Instructions:
   - 신뢰도 부족 시 사람에게 에스컬레이션
 
 
-## 워크플로우 시나리오
-  - 이전에 만든 TravelPlannerAgent 와 Human-in-Loop-workflow 를 기반으로 합니다:
+## Human-in-loop Workflow 시나리오
+  - Human-in-Loop-workflow 템플릿과 앞의 Sequence Workflow 에서 만든 TravelPlannerAgent 를 기반으로 합니다:
   - [사용자 문의] -> TravelPlannerAgent -> [사용자 추가 문의] -> TravelPlannerAgent -> [사용자 종료]
 
-## Human-in-Loop Workflow 생성
+### Human-in-Loop Workflow 생성
 
 - **새 워크플로우 생성**
    - 워크플로우 -> 만들기
@@ -488,11 +488,16 @@ Instructions:
    <img width="1688" height="1125" alt="image" src="https://github.com/user-attachments/assets/59e378a5-c245-4f56-906f-add0c135dfa1" />
 
 - **에이전트 추가**
-   변수 설정 뒤에 + 아이콘을 클릭하여 에이전트 호출을 추가하고, TravelPlannerAgent 를 선택하고 작업 ID 를 'TrevelPlanner' 로 변경합니다:
+
+   - 변수 설정 뒤에 + 아이콘을 클릭하여 에이전트 호출을 추가하고, TravelPlannerAgent 를 선택하고 작업 ID 를 'TrevelPlanner' 로 변경합니다:
+
+   <img width="1688" height="1125" alt="image" src="https://github.com/user-attachments/assets/bb905a78-52ba-4a86-b8f3-dceb810d13dd" />
+
    <img width="1688" height="1125" alt="image" src="https://github.com/user-attachments/assets/5d8ac955-5446-4122-b882-f0fce9b2efd9" />
 
 - **사람 개입 조건 변경**
-   질문하기 노드에서 Ask a question 을 변경 후 완료 버튼을 클릭합니다.
+
+   - 질문하기 노드에서 Ask a question 을 변경 후 완료 버튼을 클릭합니다.
    ```
    여행 계획에 만족하시나요? 만족하신다면 YES 를 입력해 주세요.
    ```
@@ -507,21 +512,26 @@ Instructions:
    다음으로 이동 노드의 Select action 에서 '에이전트 호출 : TravelPlanner' 선택 후 완료 버튼을 클릭합니다.
 
 - **종료 메시지 변경**
-   If 뒤의 메시지보내기 노드를 삭제합니다.
-   Else 뒤의 메시지보내기 노드의 메시지를 수정합니다.
+
+   - If 뒤의 메시지보내기 노드를 삭제합니다.
+   - <img width="1688" height="1125" alt="image" src="https://github.com/user-attachments/assets/ac283ef2-334e-4ec3-a089-d8521b1d42d0" />
+
+   - Else 뒤의 메시지보내기 노드의 메시지를 수정합니다.
+     
    ```
    Travel Agency 를 이용해 주셔서 감사합니다.
    ```
    
 - **워크플로우 저장**
+- 
    저장 버튼을 클릭하고 'Human-in-Loop' 로 저장합니다.
 
 
-## 워크플로우 테스트
+### 워크플로우 테스트
 
 - **Preview 모드**
 
-   - **Preview** 버튼을 클릭합니다.
+   - **미리보기** 버튼을 클릭합니다.
 
 - **사용자 질문**
 
