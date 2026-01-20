@@ -9,6 +9,8 @@
 - Group Chat Workflow
 - Human-in-loop Workflow
 
+  https://github.com/soondukkim/MicrosoftFoundry-AgentWorkflow/blob/main/Agent%20Workflows.md
+
 ## 🎯 학습 목표
 
 - Microsoft Foundry 워크플로우의 핵심 개념 이해
