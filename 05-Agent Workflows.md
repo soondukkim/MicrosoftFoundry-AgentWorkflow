@@ -153,43 +153,44 @@ Single Agent → Sequential Workflow → Group Chat → Human-in-loop
    
    <img width="2000" height="1125" alt="image" src="https://github.com/user-attachments/assets/0e0c193d-6c1f-48dc-ba07-6f30c34cd80a" />
 
-3. **에이전트 추가**
+**에이전트 추가**
 
-   순서대로 에이전트를 추가합니다:
+   앞에서 만들어 놓은 에이전트를 순서대로 추가합니다.
+   각 단계별 에이전트를 선택 -> 작업 ID 변경 -> 완료 로 진행합니다.
+
+   - Step1
+     - 작업 ID : TrevelPlanner
+     - 에이전트 선택 : TravelPlannerAgent
+   - Step2
+     - 작업 ID : LocalSearch
+     - 에이전트 선택 : LocalAgent
+   - Step3
+     - 작업 ID : TrevelSummary
+     - 에이전트 선택 : TravelSummaryAgent
    
-   ![Select an agent to invoke 버튼](../assets/05-04-workflow-add-agent.png)
+   <img width="2000" height="1125" alt="image" src="https://github.com/user-attachments/assets/85716da4-ea7f-4ace-9079-941834d8e3cd" />
 
-   ```
-   Step 1: TravelPlannerAgent
-     ↓
-   Step 2: LocalAgent
-     ↓
-   Step 3: TravelSummaryAgent
-   ```
 
-   - 각 단계에서 **Select an agent to invoke** 버튼을 클릭하여 에이전트를 선택합니다.
+**워크플로우 저장**
 
-   ![Select an agent to invoke 버튼1](../assets/05-04-workflow-add-agent1.png)
-   
-   ![Select an agent to invoke 버튼2](../assets/05-04-workflow-add-agent2.png)
+   - **저장** 버튼을 클릭합니다.
+   - 워크플로우 이름 : Sequencial-TravelPlan
 
-   ![Select an agent to invoke 버튼3](../assets/05-04-workflow-add-agent3.png)
+   <img width="2000" height="1125" alt="image" src="https://github.com/user-attachments/assets/8eb61936-2fbc-44bf-b1fc-5884a73099cd" />
 
-   ![전체 workflow](../assets/05-02-overall-workflow.png)
-
-4. **워크플로우 저장**
-
-   - **Save** 버튼을 클릭합니다.
-
-   ![Workflow 이름 등록](../assets/05-02-workflow-save.png)
-
-   ![Workflow 이름 저장](../assets/05-02-workflow-saved.png)
 
 ## 워크플로우 테스트
 
-1. **Preview 모드**
+**미리보기 모드**
 
    - **Preview** 버튼을 클릭합니다.
+   - 여행 계획을 세워줄 것을 요청합니다.
+
+    ```
+    제주도 2박 3일 여행 계획을 세워줘
+    ```
+    <img width="2000" height="1125" alt="image" src="https://github.com/user-attachments/assets/d349ec4a-aaa1-4c6d-bacc-662339f60fe8" />
+
 
 2. **테스트 질문**
 
