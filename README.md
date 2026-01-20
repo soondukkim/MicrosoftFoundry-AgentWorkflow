@@ -4,11 +4,10 @@
 
 ## 📋 목차
 
-- [워크플로우 개요](#워크플로우-개요)
-- [Sequential Workflow](#sequential-workflow)
-- [Group Chat Workflow](#group-chat-workflow)
-- [Human-in-loop Workflow](#human-in-loop-workflow)
-- [다음 단계](#다음-단계)
+- 워크플로우 개요
+- Sequential Workflow
+- Group Chat Workflow
+- Human-in-loop Workflow
 
 ## 🎯 학습 목표
 
