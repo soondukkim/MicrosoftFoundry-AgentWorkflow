@@ -18,18 +18,16 @@ Single Agent → Sequential Workflow → Group Chat → Human-in-loop
 | **Human-in-loop** | 사람 개입 | 승인 프로세스, 검증 |
 
 ## 워크플로우 구성 요소
-
-```python
-Workflow {
-    Agents: [Agent1, Agent2, Agent3]
-    Flow: Sequential | Parallel | Conditional
-    Inputs: User request, Context
-    Outputs: Final result, Intermediate results
-    Handoffs: Agent transitions
-    Termination: Completion condition
-}
-```
-
+    Workflow
+     ├─ Template (Sequential / Human / Group)
+     ├─ Nodes
+     │   ├─ Agent Node
+     │   ├─ Logic Node (If/Else, For Each, Go To)
+     │   ├─ Data Transformation Node (데이터 처리 및 변수 관리)
+     │   └─ User Interaction Node (메시지 보내기, 질문하기)
+     ├─ Agents
+     ├─ Execution Context
+     └─ Run & Save
 
 ---
 
