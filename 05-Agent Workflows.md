@@ -313,9 +313,14 @@ Instructions:
 ---
 
 # Group Chat Workflow
+  - 여러 에이전트가 대화를 통해 협업하여 문제를 해결하는 워크플로우입니다.
+  - 여러 에이전트가 컨텍스트/풀에 따라 제어권을 주고 받음
+  - Fixed pipeline 이 아니라 동적 라우팅
 
-여러 에이전트가 대화를 통해 협업하여 문제를 해결하는 워크플로우입니다.
-
+### 대표 시나리오
+  - Expert agent 핸드 오프
+  - Excalation / Fallback 구조
+  - Specialized agent 협업 (Student <-> Teacher)
 
 ## 필요한 에이전트 생성
 
@@ -461,94 +466,99 @@ Instructions:
 ---
 
 # Human-in-loop Workflow
+  - 사람의 승인이나 입력이 필요한 지점에서 워크플로우를 일시 중지하는 패턴입니다.
+  - Workflow 실행 중 사용자 입력을 기다렸다가 재개
+  - 승인, 확인, 추가 정보 수집 용도
 
-사람의 승인이나 입력이 필요한 지점에서 워크플로우를 일시 중지하는 패턴입니다.
+### 대표 시나리오
+  - AI 결과에 대한 승인 프로세스
+  - 계약, 보고서, 정책 문서 검토
+  - 신뢰도 부족 시 사람에게 에스컬레이션
 
 
-## 개념
+## 워크플로우 시나리오
+  - 이전에 만든 TravelPlannerAgent 와 Human-in-Loop-workflow 를 기반으로 합니다:
+  - [사용자 문의] -> TravelPlannerAgent -> [사용자 추가 문의] -> TravelPlannerAgent -> [사용자 종료]
 
-```
-Agent 1 → [Human Approval] → Agent 2 → [Human Input] → Agent 3
-```
+## Human-in-Loop Workflow 생성
 
-Human-in-loop는 다음 상황에서 유용합니다:
-- 중요한 결정 승인
-- 민감한 정보 검증
-- 예산 승인
-- 개인 선호도 입력
+1. **Workflows 섹션 이동**
 
-## 워크플로우 설계
-
-1. **에이전트 구성**
-
-   이전에 만든 Sequential Workflow를 기반으로 합니다:
-
-   ```
-   TravelPlannerAgent → [사용자 승인] → LocalAgent → TravelSummaryAgent
-   ```
-
-2. **Human Approval Point 추가**
-
-   - TravelPlannerAgent 다음에 **Human approval** 단계를 추가합니다.
-   - 사용자는 초안 여행 계획을 검토하고:
-     - ✅ 승인 → LocalAgent로 진행
-     - ❌ 거부 → TravelPlannerAgent로 돌아가서 재생성
-     - 📝 수정 요청 → 피드백과 함께 재생성
-
-3. **워크플로우 설정**
-
-   ```
-   Workflow name: Human-in-loop-Workflow
-   Description: 사용자 승인을 포함한 여행 계획 워크플로우
+   - Foundry 포털 우측 상단 메뉴에서 **Build**를 선택합니다.
+   - **Workflows** 메뉴를 클릭합니다.
    
-   Steps:
-   1. TravelPlannerAgent (초안 생성)
-   2. Human Approval (사용자 검토)
-   3. LocalAgent (승인 시 현지 정보 추가)
-   4. TravelSummaryAgent (최종 요약)
-   ```
+   ![Build > Workflows 메뉴](../assets/05-01-workflows-menu.png)
 
-4. **Approval 설정**
+2. **새 워크플로우 생성**
 
-   ```
-   Approval message: "생성된 여행 계획을 검토해주세요. 승인하시겠습니까?"
+   - **+ Create workflow** 또는 **New workflow** 버튼을 클릭합니다.
+   - **Human-in-Loop Workflow**를 선택합니다.
    
-   Options:
-   - Approve: 다음 단계로 진행
-   - Reject: TravelPlannerAgent로 돌아가기
-   - Modify: 수정 요청 입력 받기
+   ![Create workflow 버튼](../assets/05-02-create-workflow.png)
+
+   ![Create workflow 버튼2](../assets/05-02-create-workflow-2.png)
+
+3. **에이전트 추가**
+
+   변수 설정 뒤에 + 아이콘을 클릭하여 에이전트 호출을 추가하고, TravelPlannerAgent 를 선택하고 작업 ID 를 'TrevelPlanner' 로 변경합니다:
+   <img width="1688" height="1125" alt="image" src="https://github.com/user-attachments/assets/5d8ac955-5446-4122-b882-f0fce9b2efd9" />
+
+   질문하기 노드에서 Ask a question 을 변경 후 완료 버튼을 클릭합니다.
+   ```
+   여행 계획에 만족하시나요? 만족하신다면 YES 를 입력해 주세요.
+   ```
+   <img width="1688" height="1125" alt="image" src="https://github.com/user-attachments/assets/1159cf4f-9307-46a6-b516-bbf39ce5ddf0" />
+
+   If/Eles 조건의 'If' 노드의 조건 입력 후 완료 버튼을 클릭합니다.
+   ```
+   Local.ConfirmedInput <> "YES"
+   ```
+   <img width="1688" height="1125" alt="image" src="https://github.com/user-attachments/assets/7ca9a26f-dc18-4bd0-b1fa-d6b504da0f66" />
+
+   다음으로 이동 노드의 Select action 에서 '에이전트 호출 : TravelPlanner' 선택 후 완료 버튼을 클릭합니다.
+   If 뒤의 메시지보내기 노드를 삭제합니다.
+   Else 뒤의 메시지보내기 노드의 메시지를 수정합니다.
+   ```
+   Travel Agency 를 이용해 주셔서 감사합니다.
+   ```
    
-   Timeout: 24시간 (응답 없으면 자동 거부)
-   ```
+5. **워크플로우 저장**
 
-## 테스트 시나리오
+   - **Save** 버튼을 클릭합니다.
 
-1. **승인 시나리오**
+   ![Workflow 이름 등록](../assets/05-02-workflow-save.png)
 
-   ```
-   사용자: 안녕
-   TravelPlannerAgent: 여행 일정 초안 생성
-   [System]: 사용자 승인 대기...
-   사용자: 승인
-   LocalAgent: 현지 정보 추가
-   TravelSummaryAgent: 최종 요약
-   ```
+   ![Workflow 이름 저장](../assets/05-02-workflow-saved.png)
 
-2. **거부 및 재생성 시나리오**
+## 워크플로우 테스트
+
+1. **Preview 모드**
+
+   - **Preview** 버튼을 클릭합니다.
+
+2. **테스트 질문**
 
    ```
-   사용자: 제주도 여행 계획 짜줘
-   TravelPlannerAgent: 초안 생성 (호텔 중심)
-   [System]: 사용자 승인 대기...
-   사용자: 거부. 펜션으로 변경해줘
-   TravelPlannerAgent: 수정된 계획 생성 (펜션 중심)
-   [System]: 사용자 승인 대기...
-   사용자: 승인
-   LocalAgent: 현지 정보 추가
-   TravelSummaryAgent: 최종 요약
+   사용자: 제주도 2박 3일 여행 계획 세우는 것을 도와줘.
    ```
 
-   ![Human-in-Loop Workflow Preview](../assets/05-10-human-in-loop-workflow-preview.png)
+3. **실행 과정 관찰**
+
+   각 단계에서의 출력을 확인합니다:
+
+   - **Step 1 (TravelPlannerAgent)**: 기본 여행 일정 생성
+   - **Step 2 (LocalAgent)**: 현지 정보 추가 (날씨, 교통, 이벤트)
+   - **Step 3 (TravelSummaryAgent)**: 최종 요약 및 체크리스트
+
+   ![Workflow Preview](../assets/05-05-workflow-preview.png)
+
+4. **Traces 확인**
+
+   - 각 에이전트의 실행 시간
+   - 에이전트 간 데이터 전달
+   - 최종 출력 생성 과정
+
+/// 여기까지 HILW 시나리오 수정
 
 ## 💡 Human-in-loop 모범 사례
 
