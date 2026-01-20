@@ -183,7 +183,7 @@ Single Agent → Sequential Workflow → Group Chat → Human-in-loop
 
 **미리보기 모드**
 
-   - **Preview** 버튼을 클릭합니다.
+   - **미리보기** 버튼을 클릭합니다.
    - 여행 계획을 세워줄 것을 요청합니다.
 
 **테스트 질문**
@@ -394,78 +394,95 @@ Single Agent → Sequential Workflow → Group Chat → Human-in-loop
 
 **새 워크플로우 생성**
 
-   - Workflows 섹션에서 **+ Create workflow** 버튼을 클릭합니다.
-   - **Group Chat Workflow**를 선택합니다.
+   - 워크플로우 > 만들기 > 그룹 채팅 : **Group Chat Workflow 템플릿**을 통해서 워크플로우를 생성합니다.
+
+
+**에이전트 추가**
+
+   앞에서 만들어 놓은 에이전트를 순서대로 추가합니다.
+   각 단계별 에이전트를 선택 -> 작업 ID 변경 -> 완료 로 진행합니다.
+
+   - 에이전트 호출1
+     - 작업 ID : student_agent
+     - 에이전트 선택 : StudentAgent
+   - 에이전트 호출2
+     - 작업 ID : teacher_agent
+     - 에이전트 선택 : TeacherAgent
    
-   ![Group Chat Workflow 생성](../assets/05-09-group-chat-create.png)
+   <img width="2000" height="1125" alt="image" src="https://github.com/user-attachments/assets/2262226e-a20c-403c-abf6-a7426885ae35" />
 
 
-2. **에이전트 추가**
-
-   ```
-   Participants:
-   - StudentAgent
-   - TeacherAgent
-   
-   Termination condition: TeacherAgent가 [COMPLETE]를 응답할 때
-   Max turns: 4 (무한 루프 방지)
-   ```
-
-   ![여러 에이전트 추가](../assets/05-10-group-chat-agents.png)
-
-3. **대화 흐름 설정**
+**대화 흐름 설정**
 
    ```
    User → StudentAgent → TeacherAgent → StudentAgent → ...
    ```
-
    - StudentAgent가 먼저 답변을 제공
    - TeacherAgent가 평가 및 피드백
    - [COMPLETE]가 나올 때까지 반복
+   - 4회 대화 턴이 지나면 대화 종료
 
-5. **워크플로우 저장**
+       If/Else 조건 확인 : 메시지에 'COMPLETE' 가 포함되어 있으면 종료
+       - 만약
+         ```
+         !IsBlank(Find("[COMPLETE]", Upper(Last(Local.LatestMessage).Text)))
+         ```
+         <img width="2000" height="1125" alt="image" src="https://github.com/user-attachments/assets/9657a96b-bab8-4fd2-83ea-ed6df9a2d380" />
+    
+       - 다음 조건 제외 : 최대 4회까지 대화가 이어지면 메시지를 보내기
+         ```
+         Local.TurnCount >= 4
+         ```
+         <img width="2000" height="1125" alt="image" src="https://github.com/user-attachments/assets/0ed7484f-65d6-4041-9bd2-f6c100b12989" />
+    
+       - 그외 : Student 와 Teacher 대화 반복
+     
 
-   - **Save** 버튼을 클릭합니다.
-   
-   ![Group Chat Workflow 저장](../assets/05-09-group-chat-save.png)
-      
-   ![Group Chat Workflow 저장완료](../assets/05-09-group-chat-saved.png)
+**워크플로우 저장**
+
+   - **저장** 버튼을 클릭합니다.
+   - 워크플로우 이름 : Sequencial-TravelPlan
+
+   <img width="2000" height="1125" alt="image" src="https://github.com/user-attachments/assets/c471c531-612a-46ea-b514-220442385336" />
+
 
 ## 워크플로우 테스트
 
-1. **Preview 모드**
+**미리보기 모드**
 
-   - **Preview** 버튼을 클릭합니다.
+   - **미리보기** 버튼을 클릭합니다.
+   - 여행 계획을 세워줄 것을 요청합니다.
 
-   ![Group Chat Workflow Preview](../assets/05-09-group-chat-preview.png)
-
-2. **테스트 질문**
-
-   ```
-   사용자: 제주도 2박 3일 여행 일정을 짜줘.
-   ```
-
-3. **대화 흐름 관찰**
+**테스트 질문**
 
    ```
-   Turn 1:
-   StudentAgent: "제주도 추천 일정입니다. 1일차: 성산일출봉..."
-   
-   Turn 2:
-   TeacherAgent: "비용 정보가 빠져있습니다. 예산을 포함해주세요."
-   
-   Turn 3:
-   StudentAgent: "수정된 일정입니다. 총 예산 50만원... 1일차: 성산일출봉 (입장료 5000원)..."
-   
-   Turn 4:
-   TeacherAgent: "구체적인 시간대가 없습니다. 시간별 일정을 추가해주세요."
-   
-   Turn 5:
-   StudentAgent: "최종 일정입니다. 1일차 오전 9시: 성산일출봉..."
-   
-   Turn 6:
-   TeacherAgent: "[COMPLETE] 모든 조건이 충족되었습니다."
+   시애틀 2박 3일 여행 계획을 세워줘
    ```
+   <img width="2000" height="1125" alt="image" src="https://github.com/user-attachments/assets/1b76f095-a656-4a89-b24b-a4a29eddfeaa" />
+   <img width="2000" height="1125" alt="image" src="https://github.com/user-attachments/assets/b7f8c103-36b0-4c17-9639-3f55884101bf" />
+
+**실행 과정 관찰**
+
+   각 단계에서의 출력을 확인합니다:
+
+   - **StudentAgent**: 문의에 맞는 답변 생성
+   - **TeacherAgent**: StudentAgent 답변에 대한 피드백
+   - **대화 종료 조건**: 대화 내용에 Complet 이 있거나 StudentAgent-TeacherAgent 간에 대화가 4회 반복되었는지 확인
+
+   <img width="2000" height="1125" alt="image" src="https://github.com/user-attachments/assets/e8f3a92c-847a-4bd0-83ae-d325e3507d90" />
+   <img width="2000" height="1125" alt="image" src="https://github.com/user-attachments/assets/cc208cb0-94df-4806-9e91-ff22c3285f70" />
+   
+
+**Traces 확인**
+
+   - **디버그** 버튼을 클릭합니다.
+   - 워크플로우 단계별 실행 상세 내용을 확인합니다.
+       - 각 에이전트의 실행 시간
+       - 에이전트 간 데이터 전달
+       - 최종 출력 생성 과정
+
+   <img width="2000" height="1125" alt="image" src="https://github.com/user-attachments/assets/11d4dbc2-9d09-4aba-87c8-c69ac2eeb750" />
+
 
 ## 💡 Group Chat 활용 팁
 
