@@ -33,12 +33,6 @@ Single Agent → Sequential Workflow → Group Chat → Human-in-loop
 
 ---
 
-# 0. New Foundry UI 전환
-   - Microsoft Foundry Portal (https://ai.azure.com) 에서 우측 상단에 새 Foundry 토글을 활성화 하고, 이전 실습에서 만들어 놓은 프로젝트를 선택합니다.
-    <img width="1992" height="1125" alt="image" src="https://github.com/user-attachments/assets/3c1b81d4-dc31-4f74-9daa-02c3edbc7721" />
-   - 우측 상단에 빌드 메뉴를 클릭하면 왼편에 Foundry Build 메뉴들을 확인할 수 있습니다.
-     이제 에이전트 및 워크플로우를 생성할 준비가 되었습니다.
-
 # 1. Sequential Workflow
   - 에이전트 및 노드가 정해진 순서대로 직렬 실행합니다.
   - 이전 단계의 출력이 다음 단계의 입력으로 전달됩니다.
@@ -49,104 +43,111 @@ Single Agent → Sequential Workflow → Group Chat → Human-in-loop
   - 티켓 처리 파이프라인
   - RGA 전처리 -> 응답 생성 -> 후처리
 
+
+## New Foundry UI 로 전환
+   - Microsoft Foundry Portal (https://ai.azure.com) 에서 우측 상단에 새 Foundry 토글을 활성화 하고, 이전 실습에서 만들어 놓은 프로젝트를 선택합니다.
+    <img width="1992" height="1125" alt="image" src="https://github.com/user-attachments/assets/3c1b81d4-dc31-4f74-9daa-02c3edbc7721" />
+   - 우측 상단에 빌드 메뉴를 클릭하면 왼편에 Foundry Build 메뉴들을 확인할 수 있습니다.
+     이제 에이전트 및 워크플로우를 생성할 준비가 되었습니다.
+
 ## 필요한 에이전트 생성
 
-먼저 워크플로우에서 사용할 에이전트들을 생성합니다.
+먼저 워크플로우에서 사용할 에이전트들을 생성하기 위해 에이전트 만들기를 클릭합니다.
 
-### 1. TravelPlannerAgent
+### TravelPlannerAgent
 
-```
-Agent name: TravelPlannerAgent
-Description: 여행 목적지와 일정을 기획하는 에이전트
-Model: gpt-5.1
+  - 에이전트 이름: TravelPlannerAgent
+  - 모델 : gpt-5.2 (앞 실습에서 배포한 다른 GPT 모델을 선택할 수 있습니다.)
+  - 지침 :
+    ```
+    당신은 여행 계획 전문가입니다.
+    
+    역할:
+    1. 사용자의 여행 요구사항을 분석합니다
+    2. 목적지의 주요 관광지, 맛집, 숙소를 추천합니다
+    3. 일자별 여행 일정을 구체적으로 작성합니다
+    4. 예상 비용과 준비물을 제시합니다
+    
+    출력 형식:
+    - 목적지 개요
+    - 일자별 일정 (아침/점심/저녁 활동)
+    - 추천 숙소
+    - 예상 비용
+    - 준비물 목록
+    
+    다음 에이전트에게 넘길 정보: 전체 여행 계획
+    ```
+    <img width="2000" height="1125" alt="image" src="https://github.com/user-attachments/assets/388da360-ecb6-4d21-bdda-4337c83d18c1" />
+    
+### LocalAgent
 
-Instructions:
-당신은 여행 계획 전문가입니다.
+  - 에이전트 이름: LocalAgent
+  - 모델 : gpt-5.2 (앞 실습에서 배포한 다른 GPT 모델을 선택할 수 있습니다.)
+  - 지침 :
+    ```
+    당신은 현지 정보 전문가입니다.
+    
+    역할:
+    1. 이전 에이전트의 여행 계획을 받습니다
+    2. Web search를 사용하여 최신 현지 정보를 검색합니다
+    3. 실시간 정보를 추가합니다:
+       - 현재 날씨 및 기후
+       - 현지 축제 및 이벤트
+       - 교통 정보 (노선, 요금, 소요시간)
+       - 영업시간 및 예약 정보
+       - 현지 문화 및 주의사항
+    
+    출력 형식:
+    - 원래 일정 + 현지 정보 보강
+    - 교통편 상세 정보
+    - 예약 필요 장소 목록
+    - 현지 팁
+    
+    다음 에이전트에게 넘길 정보: 현지 정보가 추가된 여행 계획
+    ```
+   - **웹검색** 도구를 추가합니다.
+     <img width="2000" height="1125" alt="image" src="https://github.com/user-attachments/assets/a75e7b9c-3802-46e2-a9bc-ca5fc03df2e3" />
 
-역할:
-1. 사용자의 여행 요구사항을 분석합니다
-2. 목적지의 주요 관광지, 맛집, 숙소를 추천합니다
-3. 일자별 여행 일정을 구체적으로 작성합니다
-4. 예상 비용과 준비물을 제시합니다
+     <img width="2000" height="1125" alt="image" src="https://github.com/user-attachments/assets/40ad45c1-3197-408e-b983-7b7a42d19f40" />
+      
+### TravelSummaryAgent
 
-출력 형식:
-- 목적지 개요
-- 일자별 일정 (아침/점심/저녁 활동)
-- 추천 숙소
-- 예상 비용
-- 준비물 목록
+  - 에이전트 이름: TravelSummaryAgent
+  - 모델 : gpt-5.2 (앞 실습에서 배포한 다른 GPT 모델을 선택할 수 있습니다.)
+  - 지침 :
+    ```
+    당신은 여행 계획 정리 전문가입니다.
+    
+    역할:
+    1. 이전 에이전트들의 정보를 종합합니다
+    2. 실행 가능한 최종 계획으로 정리합니다
+    3. 체크리스트를 생성합니다
+    
+    출력 형식:
+    📋 여행 요약
+    - 목적지: 
+    - 기간:
+    - 예산:
+    
+    📅 일정 요약 (한눈에 보는 일정)
+    
+    ✅ 출발 전 체크리스트
+    - [ ] 항목1
+    - [ ] 항목2
+    
+    🎒 준비물 체크리스트
+    
+    📞 긴급 연락처 및 유용한 정보
+    
+    최종 출력: 프린트 가능한 여행 가이드
+    ```
+    <img width="2000" height="1125" alt="image" src="https://github.com/user-attachments/assets/ac6bafcf-ae85-499a-9fc0-5dfdc9794312" />
+    <img width="2000" height="1125" alt="image" src="https://github.com/user-attachments/assets/b2a296b8-aec6-48ed-a354-297995399e95" />
 
-다음 에이전트에게 넘길 정보: 전체 여행 계획
-```
-
-### 2. LocalAgent
-
-```
-Agent name: LocalAgent
-Description: 현지 정보를 추가하는 에이전트
-Model: gpt-5.1
-
-Tools: Web search (활성화)
-
-Instructions:
-당신은 현지 정보 전문가입니다.
-
-역할:
-1. 이전 에이전트의 여행 계획을 받습니다
-2. Web search를 사용하여 최신 현지 정보를 검색합니다
-3. 실시간 정보를 추가합니다:
-   - 현재 날씨 및 기후
-   - 현지 축제 및 이벤트
-   - 교통 정보 (노선, 요금, 소요시간)
-   - 영업시간 및 예약 정보
-   - 현지 문화 및 주의사항
-
-출력 형식:
-- 원래 일정 + 현지 정보 보강
-- 교통편 상세 정보
-- 예약 필요 장소 목록
-- 현지 팁
-
-다음 에이전트에게 넘길 정보: 현지 정보가 추가된 여행 계획
-```
-
-### 3. TravelSummaryAgent
-
-```
-Agent name: TravelSummaryAgent
-Description: 여행 계획을 요약하고 최종 체크리스트를 만드는 에이전트
-Model: gpt-5.1
-
-Instructions:
-당신은 여행 계획 정리 전문가입니다.
-
-역할:
-1. 이전 에이전트들의 정보를 종합합니다
-2. 실행 가능한 최종 계획으로 정리합니다
-3. 체크리스트를 생성합니다
-
-출력 형식:
-📋 여행 요약
-- 목적지: 
-- 기간:
-- 예산:
-
-📅 일정 요약 (한눈에 보는 일정)
-
-✅ 출발 전 체크리스트
-- [ ] 항목1
-- [ ] 항목2
-
-🎒 준비물 체크리스트
-
-📞 긴급 연락처 및 유용한 정보
-
-최종 출력: 프린트 가능한 여행 가이드
-```
-
+    
 ## Sequential Workflow 생성
 
-1. **Workflows 섹션 이동**
+- **Workflows 섹션 이동**
 
    - Foundry 포털 우측 상단 메뉴에서 **Build**를 선택합니다.
    - **Workflows** 메뉴를 클릭합니다.
