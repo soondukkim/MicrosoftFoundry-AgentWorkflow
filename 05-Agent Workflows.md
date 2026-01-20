@@ -147,21 +147,11 @@ Single Agent → Sequential Workflow → Group Chat → Human-in-loop
     
 ## Sequential Workflow 생성
 
-- **Workflows 섹션 이동**
+**새 워크플로우 생성**
 
-   - Foundry 포털 우측 상단 메뉴에서 **Build**를 선택합니다.
-   - **Workflows** 메뉴를 클릭합니다.
+   - 워크플로우 > 만들기 > 순차 : **Sequential Workflow 템플릿**을 통해서 워크플로우를 생성합니다.
    
-   ![Build > Workflows 메뉴](../assets/05-01-workflows-menu.png)
-
-2. **새 워크플로우 생성**
-
-   - **+ Create workflow** 또는 **New workflow** 버튼을 클릭합니다.
-   - **Sequential Workflow**를 선택합니다.
-   
-   ![Create workflow 버튼](../assets/05-02-create-workflow.png)
-
-   ![Create workflow 버튼2](../assets/05-02-create-workflow-2.png)
+   <img width="2000" height="1125" alt="image" src="https://github.com/user-attachments/assets/0e0c193d-6c1f-48dc-ba07-6f30c34cd80a" />
 
 3. **에이전트 추가**
 
