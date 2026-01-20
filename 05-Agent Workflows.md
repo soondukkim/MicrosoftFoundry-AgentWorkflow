@@ -32,17 +32,18 @@ Workflow {
 }
 ```
 
+
 ---
 
 # Sequential Workflow
 
 순차적으로 실행되는 에이전트 체인을 구축합니다. 여행 계획 수립 워크플로우를 예시로 사용합니다.
 
-### 필요한 에이전트 생성
+## 필요한 에이전트 생성
 
 먼저 워크플로우에서 사용할 에이전트들을 생성합니다.
 
-#### 1. TravelPlannerAgent
+### 1. TravelPlannerAgent
 
 ```
 Agent name: TravelPlannerAgent
@@ -68,7 +69,7 @@ Instructions:
 다음 에이전트에게 넘길 정보: 전체 여행 계획
 ```
 
-#### 2. LocalAgent
+### 2. LocalAgent
 
 ```
 Agent name: LocalAgent
@@ -99,7 +100,7 @@ Instructions:
 다음 에이전트에게 넘길 정보: 현지 정보가 추가된 여행 계획
 ```
 
-#### 3. TravelSummaryAgent
+### 3. TravelSummaryAgent
 
 ```
 Agent name: TravelSummaryAgent
@@ -133,7 +134,7 @@ Instructions:
 최종 출력: 프린트 가능한 여행 가이드
 ```
 
-### Sequential Workflow 생성
+## Sequential Workflow 생성
 
 1. **Workflows 섹션 이동**
 
@@ -183,7 +184,7 @@ Instructions:
 
    ![Workflow 이름 저장](../assets/05-02-workflow-saved.png)
 
-### 워크플로우 테스트
+## 워크플로우 테스트
 
 1. **Preview 모드**
 
@@ -211,7 +212,7 @@ Instructions:
    - 에이전트 간 데이터 전달
    - 최종 출력 생성 과정
 
-### 워크플로우 배포 및 호출
+## 워크플로우 배포 및 호출
 
 1. **Publish**
 
@@ -299,7 +300,7 @@ Instructions:
    python invokeWorkflow.py
    ```
 
-### ✅ 확인 사항
+## ✅ 확인 사항
 
 - 모든 에이전트가 순서대로 실행되는지 확인
 - 각 에이전트의 출력이 다음 에이전트에 전달되는지 확인
@@ -307,14 +308,14 @@ Instructions:
 
 ---
 
-## Group Chat Workflow
+# Group Chat Workflow
 
 여러 에이전트가 대화를 통해 협업하여 문제를 해결하는 워크플로우입니다.
 
 
-### 필요한 에이전트 생성
+## 필요한 에이전트 생성
 
-#### 1. StudentAgent
+### 1. StudentAgent
 
 ```
 Agent name: StudentAgent
@@ -339,7 +340,7 @@ Instructions:
 개선이 필요하면 TeacherAgent의 피드백을 반영하여 답변을 보완합니다.
 ```
 
-#### 2. TeacherAgent
+### 2. TeacherAgent
 
 ```
 Agent name: TeacherAgent
@@ -363,7 +364,7 @@ Instructions:
 중요: [COMPLETE]는 모든 기준이 충족되었을 때만 사용합니다.
 ```
 
-### Group Chat Workflow 생성
+## Group Chat Workflow 생성
 
 1. **새 워크플로우 생성**
 
@@ -404,7 +405,7 @@ Instructions:
       
    ![Group Chat Workflow 저장완료](../assets/05-09-group-chat-saved.png)
 
-### 워크플로우 테스트
+## 워크플로우 테스트
 
 1. **Preview 모드**
 
@@ -440,14 +441,14 @@ Instructions:
    TeacherAgent: "[COMPLETE] 모든 조건이 충족되었습니다."
    ```
 
-### 💡 Group Chat 활용 팁
+## 💡 Group Chat 활용 팁
 
 - **역할 분담**: 각 에이전트에 명확한 역할 부여
 - **종료 조건**: 무한 루프를 방지하기 위한 명확한 종료 조건
 - **최대 턴 수**: 안전장치로 최대 턴 수 설정
 - **피드백 구체성**: TeacherAgent의 피드백이 구체적일수록 개선 효과 증가
 
-### ✅ 확인 사항
+## ✅ 확인 사항
 
 - 에이전트 간 대화가 자연스럽게 이어지는지 확인
 - TeacherAgent의 평가 기준이 적절한지 확인
@@ -455,12 +456,12 @@ Instructions:
 
 ---
 
-## Human-in-loop Workflow
+# Human-in-loop Workflow
 
 사람의 승인이나 입력이 필요한 지점에서 워크플로우를 일시 중지하는 패턴입니다.
 
 
-### 개념
+## 개념
 
 ```
 Agent 1 → [Human Approval] → Agent 2 → [Human Input] → Agent 3
@@ -472,7 +473,7 @@ Human-in-loop는 다음 상황에서 유용합니다:
 - 예산 승인
 - 개인 선호도 입력
 
-### 워크플로우 설계
+## 워크플로우 설계
 
 1. **에이전트 구성**
 
@@ -516,7 +517,7 @@ Human-in-loop는 다음 상황에서 유용합니다:
    Timeout: 24시간 (응답 없으면 자동 거부)
    ```
 
-### 테스트 시나리오
+## 테스트 시나리오
 
 1. **승인 시나리오**
 
@@ -545,7 +546,7 @@ Human-in-loop는 다음 상황에서 유용합니다:
 
    ![Human-in-Loop Workflow Preview](../assets/05-10-human-in-loop-workflow-preview.png)
 
-### 💡 Human-in-loop 모범 사례
+## 💡 Human-in-loop 모범 사례
 
 ```
 ✅ 권장사항:
@@ -561,7 +562,7 @@ Human-in-loop는 다음 상황에서 유용합니다:
 - 승인 후 되돌리기 불가능한 구조
 ```
 
-### ✅ 확인 사항
+## ✅ 확인 사항
 
 - 승인 지점에서 워크플로우가 올바르게 멈추는지 확인
 - 승인/거부에 따라 적절히 분기되는지 확인
@@ -569,17 +570,7 @@ Human-in-loop는 다음 상황에서 유용합니다:
 
 ---
 
-## 📚 추가 리소스
+# 📚 추가 리소스
 
 - [Microsoft Foundry Workflows 개요](https://learn.microsoft.com/en-us/azure/ai-foundry/agents/concepts/workflow?view=foundry)
 - [Microsoft Agent Framework Workflows Orchestrations 패턴](https://learn.microsoft.com/en-us/agent-framework/user-guide/workflows/orchestrations/overview)
-
-## 다음 단계
-
-복잡한 워크플로우를 구축했습니다! 이제 에이전트와 워크플로우의 성능을 평가하는 방법을 학습합니다:
-
-➡️ **[06. 평가](./06-evaluations.md)**: 에이전트 및 워크플로우의 품질을 체계적으로 평가합니다.
-
----
-
-[← 이전: Foundry IQ](./04-foundry-iq.md) | [메인으로](./README.md) | [다음: 평가 →](./06-evaluations.md)
