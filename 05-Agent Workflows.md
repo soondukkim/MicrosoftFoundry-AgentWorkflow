@@ -7,7 +7,7 @@
 ## 워크플로우 타입
 
 ```
-Microsoft Foundry - Workflow 는 유형별 템플릿을 제공합니다.
+# Microsoft Foundry - Workflow 는 유형별 템플릿을 제공합니다.
 
 Single Agent → Sequential Workflow → Group Chat → Human-in-loop
 (단순)                                                    (복잡)
