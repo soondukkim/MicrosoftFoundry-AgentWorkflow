@@ -1,36 +1,10 @@
-# 05. 워크플로우
+# 워크플로우 개요
 
-이 모듈에서는 여러 에이전트를 조합하여 복잡한 작업을 수행하는 워크플로우를 구축하는 방법을 학습합니다.
-
-## 📋 목차
-
-- [워크플로우 개요](#워크플로우-개요)
-- [Sequential Workflow](#sequential-workflow)
-- [Group Chat Workflow](#group-chat-workflow)
-- [Human-in-loop Workflow](#human-in-loop-workflow)
-- [다음 단계](#다음-단계)
-
-## 🎯 학습 목표
-
-- Microsoft Foundry 워크플로우의 핵심 개념 이해
-- Sequential Workflow를 통한 순차적 작업 흐름 구축
-- Group Chat Workflow를 통한 다중 에이전트 협업 구현
-- Human-in-loop 패턴을 통한 사람 개입 지점 설정
-- 워크플로우 배포 및 프로그래매틱 호출
-
-## ⏱️ 예상 소요 시간
-
-약 20분
-
----
-
-## 워크플로우 개요
-
-### 워크플로우란?
+## 워크플로우란?
 
 워크플로우는 여러 AI 에이전트를 조율하여 복잡한 작업을 단계적으로 수행하는 자동화 시스템입니다.
 
-### 워크플로우 타입
+## 워크플로우 타입
 
 ```
 Single Agent → Sequential Workflow → Group Chat → Human-in-loop
@@ -45,7 +19,7 @@ Single Agent → Sequential Workflow → Group Chat → Human-in-loop
 | **Human-in-loop** | 사람 개입 | 승인 프로세스, 검증 |
 | **Conditional** | 조건부 분기 | 동적 라우팅, 에러 처리 |
 
-### 워크플로우 구성 요소
+## 워크플로우 구성 요소
 
 ```python
 Workflow {
@@ -60,7 +34,7 @@ Workflow {
 
 ---
 
-## Sequential Workflow
+# Sequential Workflow
 
 순차적으로 실행되는 에이전트 체인을 구축합니다. 여행 계획 수립 워크플로우를 예시로 사용합니다.
 
