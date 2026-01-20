@@ -189,9 +189,8 @@ Single Agent → Sequential Workflow → Group Chat → Human-in-loop
     ```
     제주도 2박 3일 여행 계획을 세워줘
     ```
+   <img width="2000" height="1125" alt="image" src="https://github.com/user-attachments/assets/6eb27906-7536-40d1-a14b-00b0c1e9fb28" />
     
-    <img width="2000" height="1125" alt="image" src="https://github.com/user-attachments/assets/d349ec4a-aaa1-4c6d-bacc-662339f60fe8" />
-
 
 2. **테스트 질문**
 
