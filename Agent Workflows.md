@@ -447,7 +447,7 @@ Single Agent → Sequential Workflow → Group Chat → Human-in-loop
 **워크플로우 저장**
 
    - **저장** 버튼을 클릭합니다.
-   - 워크플로우 이름 : Sequencial-TravelPlan
+   - 워크플로우 이름 : GroupChat
 
    <img width="2000" height="1125" alt="image" src="https://github.com/user-attachments/assets/c471c531-612a-46ea-b514-220442385336" />
 
