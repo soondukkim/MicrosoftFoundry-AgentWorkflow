@@ -21,6 +21,8 @@
 
 ## ⏱️ 예상 소요 시간
 
+### [Agent Workflow](https://github.com/soondukkim/MicrosoftFoundry-AgentWorkflow/blob/main/Agent%20Workflows.md)
+
 약 30분
 
 --
