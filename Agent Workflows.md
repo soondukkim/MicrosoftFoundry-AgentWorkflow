@@ -238,7 +238,7 @@ Single Agent → Sequential Workflow → Group Chat → Human-in-loop
 
 **Python SDK로 호출**
 
-   - [invokeworkflow.py] (https://github.com/soondukkim/MicrosoftFoundry-AgentWorkflow/blob/main/invokeworkflow.py) 파일을 다운 받고, Visual Studio Code 에서 파일을 오픈합니다.
+   - [invokeworkflow.py](https://github.com/soondukkim/MicrosoftFoundry-AgentWorkflow/blob/main/invokeworkflow.py) 파일을 다운 받고, Visual Studio Code 에서 파일을 오픈합니다.
    - Code 에서 `PROJECT_ENDPOINT`, `WORKFLOW_NAME`, `WORKFLOW_VERSION` 값을 본인 환경에 맞게 수정합니다.
    - PROJECT_ENDPOINT 는 Foundry Portal 홈 화면에서 확인할 수 있습니다.
      <img width="2000" height="1125" alt="image" src="https://github.com/user-attachments/assets/bbbb6ba1-f49d-4f61-9040-f93fb67cb9d0" />
